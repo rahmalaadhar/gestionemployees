@@ -9,9 +9,23 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "react": "19.0.0-rc-66855b96-20241106",
-    "react-dom": "19.0.0-rc-66855b96-20241106",
-    "next": "15.0.3"
+    "@emotion/cache": "^11.13.5",
+    "@emotion/react": "^11.13.5",
+    "@emotion/server": "^11.11.0",
+    "@emotion/styled": "^11.13.5",
+    "@fontsource/roboto": "^5.1.0",
+    "@fullpage/react-fullpage": "^0.1.45",
+    "@mui/icons-material": "^6.1.8",
+    "@mui/material": "^6.1.8",
+    "axios": "^1.7.8",
+    "bootstrap": "^5.3.3",
+    "material-react-table": "^3.0.1",
+    "mongoose": "^8.8.2",
+    "next": "15.0.3",
+    "react": "^18.3.1",
+    "react-bootstrap": "^2.10.6",
+    "react-dom": "^18.3.1",
+    "react-pro-sidebar": "^1.1.0"
   },
   "devDependencies": {
     "postcss": "^8",
