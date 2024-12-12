@@ -6,8 +6,9 @@ import { NextResponse } from "next/server";
 export async function GET(_, { params }) {
     try {
     await connectDB();
-    const { id } = params;
-    const employee = await Employee.findById(id).populate('departments');
+   // const { id } = params;
+   console.log("api param", params.id )
+    const employee = await Employee.findById(params.id).populate('departments');
     if (employee) {
     return NextResponse.json({ employee });
     }

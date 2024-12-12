@@ -8,6 +8,11 @@
     "start": "next start",
     "lint": "next lint"
   },
+  "packageManager": "npm@10.5.2",
+  "overrides": {
+    "react": "$react",
+    "react-dom": "$react-dom"
+  },
   "dependencies": {
     "@emotion/cache": "^11.13.5",
     "@emotion/react": "^11.13.5",
@@ -19,12 +24,19 @@
     "@mui/material": "^6.1.8",
     "axios": "^1.7.8",
     "bootstrap": "^5.3.3",
+    "filepond": "^4.32.5",
+    "filepond-plugin-file-encode": "^2.1.14",
+    "filepond-plugin-file-validate-type": "^1.2.9",
+    "filepond-plugin-image-exif-orientation": "^1.0.11",
+    "filepond-plugin-image-preview": "^4.6.12",
+    "filepond-plugin-pdf-preview": "^1.0.4",
     "material-react-table": "^3.0.1",
     "mongoose": "^8.8.2",
-    "next": "15.0.3",
+    "next": "^15.0.4-canary.45",
     "react": "^18.3.1",
     "react-bootstrap": "^2.10.6",
     "react-dom": "^18.3.1",
+    "react-filepond": "^7.1.2",
     "react-pro-sidebar": "^1.1.0"
   },
   "devDependencies": {

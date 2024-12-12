@@ -88,7 +88,7 @@ const Listemployees = ({employees}) => {
         size: 50,
         },
         {
-          accessorKey: '_id',
+          accessorKey: 'id',
           header: 'ACTION',
           size: 50,
           Cell: ({ cell, row }) => (
@@ -97,6 +97,7 @@ const Listemployees = ({employees}) => {
            //bouton modifier 
             variant="success"
             size="md">
+              {console.log("idddddd", cell.row.original._id)}
             <Link
             href={`/admin/employees/updateemployee/${cell.row.original._id}`}
             >

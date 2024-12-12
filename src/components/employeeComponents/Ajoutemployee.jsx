@@ -6,10 +6,19 @@ import Button from 'react-bootstrap/Button';
 import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
+import axios from 'axios';
+import { FilePond,registerPlugin } from 'react-filepond'
+import 'filepond/dist/filepond.min.css';
+import FilePondPluginImageExifOrientation from 'filepond-plugin-image-exif-orientation'
+import FilePondPluginImagePreview from 'filepond-plugin-image-preview'
+import 'filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css'
+registerPlugin(FilePondPluginImageExifOrientation, FilePondPluginImagePreview)
 
 const Ajoutemployee =({lesdepartments}) => {
+ 
   const router=useRouter();
-
+ //pour telecharger l'image
+ const [files, setFiles] = useState([]);
 const [FirstName, setFirstName] = useState("");
 const [LastName, setLastName] = useState("");
 const [Email, setEmail] = useState("");
@@ -25,7 +34,7 @@ const handleReset = () => {
   setDateOfBirth("")
   setPhotoPath("")
   setDepartments("")
-  
+  setFiles([])
   }
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -51,6 +60,32 @@ const handleReset = () => {
     }
     setValidated(true);
     }
+
+    const serverOptions = () => { console.log('server pond');
+      return {
+      process: (fieldName, file, metadata, load, error, progress, abort) => {
+      console.log(file)
+      const data = new FormData();
+      data.append('file', file);
+      data.append('upload_preset', 'gestemployee');
+      data.append('cloud_name', 'dsugsu6ny');
+      data.append('public_id', file.name);
+      axios.post('https://api.cloudinary.com/v1_1/dsugsu6ny/images/upload',
+      data)
+      .then((response) => response.data)
+      .then((data) => {
+      console.log(data);
+      setCouverture(data.url) ;
+      load(data);
+      })
+      .catch((error) => {
+      console.error('Error uploading file:', error);
+      error('Upload failed');
+      abort();
+      });
+      },
+      };
+      };
   return (
     <div>
      
@@ -109,8 +144,18 @@ value={dep._id}> {dep.Name}</option>
 
         <Form.Group as={Col} >
           <Form.Label>Avatar</Form.Label>
-          <Form.Control required type="text" placeholder="Avatar" value={PhotoPath}
-           onChange={(e)=>setPhotoPath(e.target.value)} />
+          {/* <Form.Control required type="text" placeholder="Avatar" value={PhotoPath}
+           onChange={(e)=>setPhotoPath(e.target.value)} /> */}
+           <div style={{ width: "80%", margin: "auto", padding: "1%" }}>
+<FilePond
+files={files}
+acceptedFileTypes="images/*"
+onupdatefiles={setFiles}
+allowMultiple={false}
+server={serverOptions()}
+name="file"
+/>
+</div>
         </Form.Group>
       </Row>
 
